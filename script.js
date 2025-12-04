@@ -1,5 +1,5 @@
 // Initialize map
-ar map = L.map('map').setView([17.57, 120.39], 10);
+var map = L.map('map').setView([17.57, 120.39], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: "© OpenStreetMap contributors"
 }).addTo(map);
@@ -108,7 +108,7 @@ const accommodations = [
 
     //Vintar
     { name: "Vintar Riverside Lodge", lat: 18.22, lng: 120.70, area: "City", budget: 1400, rating: 3.7, town: "vintar" },
-    { name: "Vintar Hills Lodge", lat: 18.23, lng: 120.71, area: "Mountain", budget: 1200, rating: 3.5, town: "vintar" }
+    { name: "Vintar Hills Lodge", lat: 18.23, lng: 120.71, area: "Mountain", budget: 1200, rating: 3.5, town: "vintar" },
 
     //Pinili
     { name: "Pinili Farmstead Stay", lat: 17.95, lng: 120.48, area: "Mountain", budget: 1300, rating: 3.6, town: "pinili" },
