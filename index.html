@@ -4,81 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ilocos Norte Accommodation Recommender</title>
-    
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
+
     <h1 class="title">Ilocos Norte Accommodation Recommender</h1>
 
     <div class="container">
-
         <!-- LEFT PANEL -->
         <div class="left-panel">
             <div class="input-group">
-                <input 
-                    type="text" 
-                    id="townInput" 
-                    placeholder="Enter town/city" 
-                    oninput="showSuggestions()"
-                >
-                <div id="autocomplete-list" class="autocomplete-items"></div>
-                <button class="btn" onclick="refreshRecommendations()">Search</button>
+                <input type="text" id="townInput" placeholder="Enter town/city">
+                <button class="btn" onclick="centerMap()">Search</button>
             </div>
 
-            <div class="filter">
-                <label>Budget: ₱<span id="budgetVal">1500</span></label>
-                <input 
-                    type="range" 
-                    id="budget" 
-                    min="500" 
-                    max="5000" 
-                    value="1500" 
-                    oninput="document.getElementById('budgetVal').innerText=this.value"
-                >
-            </div>
+            <label>Budget: ₱<span id="budgetVal">1500</span></label>
+            <input type="range" id="budget" min="500" max="5000" value="1500"
+                   oninput="document.getElementById('budgetVal').innerText=this.value">
 
-            <div class="filter">
-                <label>Preferred area:</label>
-                <select id="area">
-                    <option value="Any">Any</option>
-                    <option value="Beachfront">Beachfront</option>
-                    <option value="City">City</option>
-                    <option value="Mountain">Mountain</option>
-                </select>
-            </div>
+            <label>Preferred area:</label>
+            <select id="area">
+                <option value="Any">Any</option>
+                <option value="Beachfront">Beachfront</option>
+                <option value="City">City</option>
+                <option value="Mountain">Mountain</option>
+            </select>
 
-            <div class="filter">
-                <label>Minimum rating: <span id="ratingVal">3.5</span></label>
-                <input 
-                    type="range" 
-                    id="rating" 
-                    min="0" 
-                    max="5" 
-                    value="3.5" 
-                    step="0.5" 
-                    oninput="document.getElementById('ratingVal').innerText=this.value"
-                >
-            </div>
+            <label>Minimum rating: <span id="ratingVal">3.5</span></label>
+            <input type="range" id="rating" min="0" max="5" value="3.5" step="0.5"
+                   oninput="document.getElementById('ratingVal').innerText=this.value">
 
-            <div class="buttons">
-                <button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
-                <button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
-            </div>
+            <button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
+            <button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
 
             <h2>Top Recommendations</h2>
             <ul id="recommendations"></ul>
         </div>
 
-        <!-- RIGHT PANEL: MAP -->
+        <!-- RIGHT SIDE MAP -->
         <div class="map-container">
             <div id="map"></div>
         </div>
-
     </div>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
