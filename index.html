@@ -15,9 +15,14 @@
         <!-- LEFT PANEL -->
         <div class="left-panel">
             <div class="input-group">
-                <input type="text" id="townInput" placeholder="Enter town/city">
-                <button class="btn" onclick="centerMap()">Search</button>
-            </div>
+    <input type="text" id="townInput" placeholder="Enter town/city">
+    <button class="btn-search" onclick="centerMap()">Search</button>
+</div>
+
+<!-- Panel buttons remain unchanged -->
+<button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
+<button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
+
 
             <label>Budget: ₱<span id="budgetVal">1500</span></label>
             <input type="range" id="budget" min="500" max="5000" value="1500"
