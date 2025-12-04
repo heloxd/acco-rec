@@ -20,7 +20,7 @@
 
             <div class="input-group">
                 <input type="text" id="townInput" placeholder="Enter town/city" oninput="showSuggestions()" autocomplete="off">
-                <button class="btn" onclick="centerMap()">Search</button>
+                <button class="btn" onclick="centerMap(); refreshRecommendations();">Search</button>
             </div>
             <div id="autocomplete-list" class="autocomplete-items"></div>
 
