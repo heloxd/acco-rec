@@ -35,16 +35,30 @@ body {
     gap: 12px;
 }
 
+/* ---------- Custom Scrollbar ---------- */
+.left-panel::-webkit-scrollbar {
+    width: 8px;
+}
+.left-panel::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+.left-panel::-webkit-scrollbar-thumb {
+    background: #1976d2;
+    border-radius: 4px;
+}
+
 /* ---------- Input Group (search bar + button) ---------- */
 .input-group {
     display: flex;
     gap: 8px;
     width: 100%;
+    position: relative;
 }
 
 .input-group input[type="text"] {
     flex: 1;
-    padding: 10px;
+    padding: 10px 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
     transition: border 0.3s, box-shadow 0.3s;
@@ -59,7 +73,7 @@ body {
 /* ---------- Search Button ---------- */
 .input-group .btn-search {
     flex-shrink: 0;
-    padding: 10px 16px;
+    padding: 10px 14px;
     font-size: 16px;
     background-color: #1976d2;
     color: white;
@@ -67,11 +81,21 @@ body {
     border-radius: 8px;
     cursor: pointer;
     height: 42px; /* match input height */
-    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* space for icon */
+    transition: background 0.3s, transform 0.2s;
 }
 
 .input-group .btn-search:hover {
     background-color: #0d5ca8;
+    transform: translateY(-1px);
+}
+
+/* Optional: magnifying glass icon inside search button */
+.input-group .btn-search::before {
+    content: "🔍";
 }
 
 /* ---------- Panel Buttons ---------- */
@@ -83,11 +107,12 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .btn:hover {
     background: #0d5ca8;
+    transform: translateY(-1px);
 }
 
 .btn-clear {
@@ -97,11 +122,12 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .btn-clear:hover {
     background: #c9c9c9;
+    transform: translateY(-1px);
 }
 
 /* ---------- Labels ---------- */
@@ -178,11 +204,20 @@ input[type="range"] {
     overflow-y: auto;
     width: 100%;
     z-index: 10;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.autocomplete-items.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .autocomplete-item {
     padding: 8px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .autocomplete-item:hover {
