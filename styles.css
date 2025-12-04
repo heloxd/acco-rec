@@ -1,178 +1,37 @@
-/* ------------------------------
-   GLOBAL LAYOUT
---------------------------------*/
 body {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  background: #f4f4f4;
-  color: #333;
-}
-
-header {
-  background: #ffffff;
-  padding: 16px;
-  box-shadow: 0 2px 8px #00000020;
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f6f8fa;
 }
 
 h1 {
-  margin: 0 0 10px 0;
-  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-/* ------------------------------
-   TOP CONTROLS
---------------------------------*/
-.top-controls {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  position: relative;
+.controls {
+  margin-bottom: 20px;
 }
 
-#place-input {
-  flex: 1;
-  padding: 10px;
+input, select, button {
+  padding: 8px;
+  margin-right: 10px;
+}
+
+#map {
+  height: 500px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  margin-top: 20px;
 }
 
-/* Autocomplete dropdown */
-.autocomplete {
-  position: absolute;
-  top: 45px;
-  left: 0;
-  width: calc(100% - 200px);
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
   background: white;
-  border: 1px solid #ddd;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 4px 10px #00000020;
-  max-height: 200px;
-  overflow-y: auto;
-  display: none;
-}
-
-.autocomplete div {
   padding: 10px;
-  cursor: pointer;
-}
-
-.autocomplete div:hover {
-  background: #f0f0f0;
-}
-
-/* ------------------------------
-   MATERIAL BUTTONS
---------------------------------*/
-.md-btn {
-  padding: 10px 14px;
-  border: none;
-  border-radius: 8px;
-  background: #1976d2;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 2px 4px #00000030;
-  transition: 0.2s;
-}
-
-.md-btn:hover {
-  background: #0d5ca8;
-}
-
-/* ------------------------------
-   MAIN LAYOUT
---------------------------------*/
-main {
-  display: flex;
-  height: calc(100vh - 120px);
-}
-
-.left {
-  width: 360px;
-  overflow-y: auto;
-  padding: 16px;
-}
-
-.right {
-  flex: 1;
-  position: relative;
-}
-
-.map {
-  height: 100%;
-  width: 100%;
-}
-
-/* ------------------------------
-   CARDS
---------------------------------*/
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px #00000015;
-}
-
-.card h2, .card h3 {
-  margin-top: 0;
-}
-
-/* ------------------------------
-   CHIPS
---------------------------------*/
-.chip-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.chip {
-  padding: 6px 10px;
-  background: #e0e0e0;
-  border-radius: 20px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.chip.active {
-  background: #1976d2;
-  color: white;
-}
-
-/* ------------------------------
-   RECOMMENDATION LIST
---------------------------------*/
-.results-list .result {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.results-list .result:hover {
-  background: #f7f7f7;
-}
-
-/* ------------------------------
-   ROUTE PANEL
---------------------------------*/
-.route-panel {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 260px;
-  max-height: 300px;
-  overflow: auto;
-}
-
-/* ------------------------------
-   FOOTER
---------------------------------*/
-footer {
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-  color: #555;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px #0002;
 }
