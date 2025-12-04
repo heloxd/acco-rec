@@ -4,7 +4,6 @@ body {
     background: #f4f4f4;
 }
 
-/* Page title */
 .title {
     text-align: center;
     padding: 20px 0;
@@ -14,13 +13,11 @@ body {
     font-size: 32px;
 }
 
-/* Main layout */
 .container {
     display: flex;
     height: calc(100vh - 80px);
 }
 
-/* Left sidebar */
 .left-panel {
     width: 360px;
     background: white;
@@ -50,7 +47,6 @@ label {
     margin-bottom: 5px;
 }
 
-/* Buttons */
 .btn {
     width: 100%;
     margin-top: 14px;
@@ -80,7 +76,6 @@ label {
     background: #c9c9c9;
 }
 
-/* Map */
 .map-container {
     flex: 1;
 }
@@ -90,7 +85,6 @@ label {
     width: 100%;
 }
 
-/* Recommendations list */
 #recommendations {
     padding: 0;
     list-style: none;
@@ -109,7 +103,6 @@ label {
     background: #e8f0fe;
 }
 
-/* Details box below recommendations */
 .details-box {
     margin-top: 10px;
     padding: 12px;
@@ -119,7 +112,6 @@ label {
     min-height: 80px;
 }
 
-/* Autocomplete dropdown */
 .autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;
