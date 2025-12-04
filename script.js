@@ -1,8 +1,13 @@
 // Initialize map
-var map = L.map('map').setView([17.57, 120.39], 10);
+ar map = L.map('map').setView([17.57, 120.39], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: "© OpenStreetMap contributors"
 }).addTo(map);
+
+// Ensure map renders properly on page load
+window.addEventListener('load', () => {
+    map.invalidateSize();
+});
 
 var markers = [];
 
