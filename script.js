@@ -50,8 +50,6 @@ function clearMarkers() {
 
 function centerMap() {
     let townInput = document.getElementById("townInput").value.toLowerCase().trim();
-    townInput = townInput.replace(/\s+(city|town)$/i, "");
-
     if (towns[townInput]) {
         map.setView(towns[townInput], 12);
     } else {
@@ -67,7 +65,6 @@ function refreshRecommendations() {
     const rating = parseFloat(document.getElementById("rating").value);
 
     let townInput = document.getElementById("townInput").value.toLowerCase().trim();
-    townInput = townInput.replace(/\s+(city|town)$/i, "");
 
     const list = document.getElementById("recommendations");
     const details = document.getElementById("recommendation-details");
@@ -143,7 +140,6 @@ function showSuggestions() {
     });
 }
 
-// Close suggestions when clicking outside
 document.addEventListener("click", function(e) {
     if (!document.getElementById("townInput").contains(e.target)) {
         document.getElementById("autocomplete-list").innerHTML = "";
