@@ -1,84 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ilocos Norte Accommodation Recommender</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <header>
+    <h1>Ilocos Norte Accommodation Recommender</h1>
+    <div class="top-controls">
+      <input id="place-input" placeholder="Search places or addresses (Autocomplete)" />
+      <button id="locate-btn" title="Center on my location">📍 Me</button>
+      <button id="directions-clear">Clear Route</button>
+    </div>
+  </header>
 
-<div class="hero">
-  <h1>Ilocos Norte Accommodation Recommender</h1>
-  <p>Rule-Based Expert System + Leaflet Map + Ilocos 3D Theme</p>
-</div>
+  <main>
+    <section class="left">
+      <div class="card">
+        <h2>Preferences</h2>
+        <label>Budget: ₱<span id="budget-label">1500</span></label>
+        <input id="budget" type="range" min="500" max="5000" step="100" value="1500">
 
-<div class="container">
+        <label>Preferred area</label>
+        <select id="area-select">
+          <option value="any">Any</option>
+        </select>
 
-  <aside class="card-3d glass">
-    <h2>Filters</h2>
+        <label>Amenities</label>
+        <div id="amenities" class="chip-row"></div>
 
-    <form id="prefForm">
-      <label>Budget</label>
-      <select id="budget">
-        <option value="">Any</option>
-        <option value="low">Low</option>
-        <option value="mid">Mid</option>
-        <option value="high">High</option>
-      </select>
+        <label>Minimum rating: <span id="rating-label">3.5</span></label>
+        <input id="min-rating" type="range" min="1" max="5" step="0.1" value="3.5">
 
-      <label>Municipality</label>
-      <select id="location"></select>
-
-      <label>Amenities</label>
-      <div class="amenities">
-        <label><input type="checkbox" value="wifi"> WiFi</label>
-        <label><input type="checkbox" value="beachfront"> Beachfront</label>
-        <label><input type="checkbox" value="parking"> Parking</label>
-        <label><input type="checkbox" value="pool"> Pool</label>
+        <div class="buttons">
+          <button id="refresh-btn">Refresh Recommendations</button>
+          <button id="distance-matrix-btn">Distance Matrix (from me)</button>
+        </div>
       </div>
 
-      <label>Travel Type</label>
-      <select id="tripType">
-        <option value="">Any</option>
-        <option value="leisure">Leisure</option>
-        <option value="adventure">Adventure</option>
-        <option value="culture">Culture</option>
-      </select>
+      <div class="card">
+        <h2>Top Recommendations</h2>
+        <div id="results" class="results-list"></div>
+      </div>
+    </section>
 
-      <button type="submit" class="btn-3d">Recommend</button>
-    </form>
+    <section class="right">
+      <div id="map" class="map"></div>
 
-    <hr>
+      <div class="card route-panel" id="route-panel" hidden>
+        <h3>Directions</h3>
+        <div id="route-info"></div>
+      </div>
+    </section>
+  </main>
 
-    <label>Map Theme</label>
-    <select id="mapTheme">
-      <option value="osm">Default (OSM)</option>
-      <option value="dark">Dark Mode</option>
-      <option value="terrain">Terrain</option>
-    </select>
-  </aside>
+  <footer>
+    <small>Sample dataset. Replace with real data or a backend for production. API key is required.</small>
+  </footer>
 
-  <section class="results-panel">
-    <h2>Results</h2>
-    <div id="results"></div>
-  </section>
-
-</div>
-
-<h2 class="title-3d">Map</h2>
-<div id="map"></div>
-
-<!-- Scripts -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-<script src="app.js"></script>
-
+  <!-- Google Maps JS: replace YOUR_API_KEY_HERE -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YAIzaSyA1qPMCRE0KVjbdPa38fn3po9n0i3Ll6B4&libraries=places"></script>
+  <script src="script.js"></script>
 </body>
 </html>
