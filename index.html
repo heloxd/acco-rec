@@ -4,116 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ilocos Norte Accommodation Recommender</title>
+<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<style>
-  body { font-family: Arial, sans-serif; margin: 20px; }
-  #map { height: 500px; margin-top: 20px; }
-  .controls { margin-bottom: 20px; }
-  label { margin-right: 10px; }
-</style>
 </head>
 <body>
 
 <h1>Ilocos Norte Accommodation Recommender</h1>
 
 <div class="controls">
-  <input type="text" id="townInput" placeholder="Enter town/city">
-  <button onclick="centerMap()">Go</button>
+  <input type="text" id="townInput" placeholder="Enter town or city">
+  <button onclick="searchTown()">Search</button>
   <button onclick="clearMarkers()">Clear Markers</button>
 </div>
 
 <div class="controls">
   <label>Budget: ₱<span id="budgetVal">1500</span></label>
-  <input type="range" id="budget" min="500" max="5000" value="1500" oninput="document.getElementById('budgetVal').innerText=this.value">
-  
+  <input type="range" id="budget" min="500" max="5000" value="1500" 
+         oninput="document.getElementById('budgetVal').innerText=this.value">
+
   <label>Preferred area:</label>
   <select id="area">
     <option value="Any">Any</option>
     <option value="Beachfront">Beachfront</option>
     <option value="City">City</option>
+    <option value="Mountain">Mountain</option>
   </select>
 
-  <label>Minimum rating: <span id="ratingVal">3.5</span></label>
-  <input type="range" id="rating" min="0" max="5" step="0.5" value="3.5" oninput="document.getElementById('ratingVal').innerText=this.value">
-  
+  <label>Min. Rating: <span id="ratingVal">3.5</span></label>
+  <input type="range" id="rating" min="0" max="5" step="0.5" value="3.5" 
+         oninput="document.getElementById('ratingVal').innerText=this.value">
+
   <button onclick="refreshRecommendations()">Refresh Recommendations</button>
 </div>
 
 <div id="map"></div>
 
 <h2>Top Recommendations</h2>
-<ul id="recommendations">
-  <!-- Recommendations will appear here -->
-</ul>
+<ul id="recommendations"></ul>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  // Initialize map
-  var map = L.map('map').setView([17.57, 120.39], 10); // Ilocos Norte coordinates
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  var markers = [];
-
-  // Sample accommodations dataset
-  const accommodations = [
-    {name: "Beachside Resort", lat: 18.22, lng: 120.59, area: "Beachfront", budget: 2000, rating: 4.5},
-    {name: "City Hotel", lat: 17.57, lng: 120.39, area: "City", budget: 1500, rating: 4.0},
-    {name: "Budget Inn", lat: 17.60, lng: 120.40, area: "City", budget: 1000, rating: 3.0},
-    {name: "Mountain View Lodge", lat: 18.15, lng: 120.50, area: "Mountain", budget: 1800, rating: 4.2},
-  ];
-
-  function refreshRecommendations() {
-    clearMarkers();
-    const budget = parseInt(document.getElementById('budget').value);
-    const area = document.getElementById('area').value;
-    const rating = parseFloat(document.getElementById('rating').value);
-    const list = document.getElementById('recommendations');
-    list.innerHTML = '';
-
-    const filtered = accommodations.filter(a => 
-      a.budget <= budget &&
-      a.rating >= rating &&
-      (area === "Any" || a.area === area)
-    );
-
-    if (filtered.length === 0) {
-      list.innerHTML = '<li>No recommendations found.</li>';
-      return;
-    }
-
-    filtered.forEach(a => {
-      const li = document.createElement('li');
-      li.textContent = `${a.name} - ₱${a.budget}, Rating: ${a.rating}`;
-      list.appendChild(li);
-
-      const marker = L.marker([a.lat, a.lng]).addTo(map).bindPopup(`${a.name} - ₱${a.budget}, Rating: ${a.rating}`);
-      markers.push(marker);
-    });
-  }
-
-  function clearMarkers() {
-    markers.forEach(m => map.removeLayer(m));
-    markers = [];
-  }
-
-  function centerMap() {
-    const town = document.getElementById('townInput').value.toLowerCase();
-    // Simple town coordinates
-    const towns = {
-      "laoag city": [17.57, 120.39],
-      "pagudpud": [18.56, 120.76],
-      "paoay": [17.85, 120.38]
-    };
-    if (towns[town]) {
-      map.setView(towns[town], 12);
-    } else {
-      alert("Town not found in dataset. Showing default view.");
-      map.setView([17.57, 120.39], 10);
-    }
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
