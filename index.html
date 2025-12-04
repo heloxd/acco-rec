@@ -1,64 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ilocos Norte StayFinder</title>
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- MarkerCluster -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
-  <script defer src="data.js"></script>
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilocos Norte Accommodation Recommender</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
+    <h1 class="title">Ilocos Norte Accommodation Recommender</h1>
 
-  <div class="title"><h1>Ilocos Norte StayFinder</h1></div>
+    <div class="container">
 
-  <div class="container">
-    <div class="left-panel">
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="townInput" 
+                    placeholder="Enter town/city" 
+                    oninput="showSuggestions()"
+                >
+                <div id="autocomplete-list" class="autocomplete-items"></div>
+                <button class="btn" onclick="refreshRecommendations()">Search</button>
+            </div>
 
-      <!-- Search -->
-      <div class="input-group">
-        <input id="townInput" type="text" placeholder="Search town...">
-        <div id="autocomplete-list" class="autocomplete-items"></div>
-      </div>
+            <div class="filter">
+                <label>Budget: ₱<span id="budgetVal">1500</span></label>
+                <input 
+                    type="range" 
+                    id="budget" 
+                    min="500" 
+                    max="5000" 
+                    value="1500" 
+                    oninput="document.getElementById('budgetVal').innerText=this.value"
+                >
+            </div>
 
-      <!-- Filters -->
-      <h2>Filters</h2>
+            <div class="filter">
+                <label>Preferred area:</label>
+                <select id="area">
+                    <option value="Any">Any</option>
+                    <option value="Beachfront">Beachfront</option>
+                    <option value="City">City</option>
+                    <option value="Mountain">Mountain</option>
+                </select>
+            </div>
 
-      <label>Max Budget (₱)</label>
-      <input id="budgetRange" type="range" min="500" max="10000" step="100" value="10000" class="range">
-      <span id="budgetValue">₱10,000</span>
+            <div class="filter">
+                <label>Minimum rating: <span id="ratingVal">3.5</span></label>
+                <input 
+                    type="range" 
+                    id="rating" 
+                    min="0" 
+                    max="5" 
+                    value="3.5" 
+                    step="0.5" 
+                    oninput="document.getElementById('ratingVal').innerText=this.value"
+                >
+            </div>
 
-      <label>Category</label>
-      <select id="categoryFilter">
-        <option value="">Any</option>
-      </select>
+            <div class="buttons">
+                <button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
+                <button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
+            </div>
 
-      <label>Area</label>
-      <select id="areaFilter">
-        <option value="">Any</option>
-      </select>
+            <h2>Top Recommendations</h2>
+            <ul id="recommendations"></ul>
+        </div>
 
-      <button id="searchBtn" class="btn">Find Accommodation</button>
-      <button id="clearBtn" class="btn-clear">Clear</button>
-
-      <h2>Recommendations</h2>
-      <ul id="recommendations"></ul>
+        <!-- RIGHT PANEL: MAP -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
 
     </div>
 
-    <div class="map-container">
-      <div id="map"></div>
-    </div>
-  </div>
-
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
