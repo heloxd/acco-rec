@@ -27,12 +27,13 @@ body {
     padding: 20px;
     overflow-y: auto;
     box-shadow: 2px 0 10px #00000020;
+    position: relative;
 }
 
 .input-group {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 input[type="text"] {
@@ -116,4 +117,29 @@ label {
     border-radius: 8px;
     box-shadow: 0 2px 5px #00000015;
     min-height: 80px;
+}
+
+/* Autocomplete dropdown */
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-top: none;
+    z-index: 99;
+    top: 55px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 5px #00000015;
+}
+
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #e8f0fe;
 }
