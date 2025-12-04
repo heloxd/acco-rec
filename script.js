@@ -6,7 +6,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var markers = [];
 
-// All Ilocos Norte towns (as before)
+// Towns in Ilocos Norte
 const towns = {
   "adams": [18.45, 120.90],
   "bacarra": [18.25, 120.61],
@@ -32,7 +32,7 @@ const towns = {
   "vintar": [18.22, 120.70]
 };
 
-// Autocomplete for town input
+// Autocomplete function for town input
 function showSuggestions() {
   const input = document.getElementById("townInput").value.toLowerCase();
   const box = document.getElementById("suggestions");
@@ -58,42 +58,48 @@ function showSuggestions() {
   });
 }
 
-// Sample dataset (expanded). Use real hotel/inn names from public accommodation lists.  
-// This is only a **starting point** — you can expand manually later.
+// Expanded sample dataset — hotels/inns/resorts in various towns of Ilocos Norte
 const accommodations = [
-  // Laoag
+  // Laoag City & nearby
   { name: "Java Hotel", lat: 18.20, lng: 120.59, area: "City", budget: 2400, rating: 4.2, town: "laoag" },
   { name: "Viven Hotel", lat: 18.20, lng: 120.60, area: "City", budget: 2000, rating: 4.0, town: "laoag" },
-  { name: "Fort Ilocandia Resort & Casino", lat: 18.19, lng: 120.55, area: "Beachfront", budget: 3500, rating: 4.5, town: "laoag" },
   { name: "Isabel Suites", lat: 18.20, lng: 120.58, area: "City", budget: 1500, rating: 3.9, town: "laoag" },
   { name: "Northview Hotel", lat: 18.21, lng: 120.60, area: "City", budget: 1800, rating: 3.8, town: "laoag" },
-
-  // Pagudpud & nearby beachfront
-  { name: "Hannah's Resort", lat: 18.60, lng: 120.80, area: "Beachfront", budget: 3200, rating: 4.4, town: "pagudpud" },
-  { name: "Casa Consuelo Island Reef Resort", lat: 18.62, lng: 120.82, area: "Beachfront", budget: 2500, rating: 4.1, town: "pagudpud" },
-  { name: "Alta Vista Ilocandia", lat: 18.59, lng: 120.79, area: "Beachfront", budget: 2200, rating: 4.0, town: "pagudpud" },
-
-  // Currimao / Badoc / Bangui (beachfront / resort-type)
-  { name: "Currimar Addison Family Beach Resort", lat: 18.00, lng: 120.48, area: "Beachfront", budget: 2000, rating: 3.8, town: "currimao" },
-  { name: "D’ Corals Beach Resort & Restaurant", lat: 18.00, lng: 120.47, area: "Beachfront", budget: 2100, rating: 3.9, town: "currimao" },
-  { name: "Amerie Rae Resort", lat: 18.33, lng: 120.75, area: "Beachfront", budget: 1700, rating: 3.7, town: "bangui" },
-  { name: "Rubio’s Farm and Resthouse", lat: 17.92, lng: 120.48, area: "Beachfront", budget: 1400, rating: 3.6, town: "badoc" },
-
-  // Burgos (mountain / lighthouse area)
-  { name: "Cape Bojeador Lodge", lat: 18.52, lng: 120.65, area: "Mountain", budget: 1300, rating: 3.7, town: "burgos" },
-
-  // Batac
-  { name: "Sikatel Hotel", lat: 18.06, lng: 120.56, area: "City", budget: 1600, rating: 3.9, town: "batac" },
-  { name: "North Stellar Hotel & Events Place", lat: 18.07, lng: 120.55, area: "City", budget: 1800, rating: 4.0, town: "batac" },
+  { name: "Balay de Blas Pension House", lat: 18.20, lng: 120.59, area: "City", budget: 1200, rating: 3.5, town: "laoag" },
 
   // Paoay
-  { name: "Veranda Suites & Restaurant", lat: 18.08, lng: 120.53, area: "City", budget: 1500, rating: 3.8, town: "paoay" },
+  { name: "Bellagio Hills Hotel & Restaurant", lat: 18.08, lng: 120.53, area: "City", budget: 2200, rating: 4.1, town: "paoay" },
+  { name: "Veranda Suites & Restaurant", lat: 18.07, lng: 120.53, area: "City", budget: 1700, rating: 3.9, town: "paoay" },
 
-  // Pasuquin
-  { name: "Jovy & Yollie’s Resort", lat: 18.33, lng: 120.62, area: "Beachfront", budget: 1600, rating: 3.7, town: "pasuquin" }
+  // Pagudpud & coastlines
+  { name: "Alta Vista Ilocandia", lat: 18.59, lng: 120.79, area: "Beachfront", budget: 2200, rating: 4.0, town: "pagudpud" },
+  { name: "Blue Lagoon Inn & Restaurant", lat: 18.65, lng: 120.75, area: "Beachfront", budget: 2000, rating: 3.9, town: "pagudpud" },
+  { name: "Nest Resort Pagudpud", lat: 18.55, lng: 120.76, area: "Beachfront", budget: 2100, rating: 3.8, town: "pagudpud" },
+
+  // Currimao / Badoc / coast
+  { name: "Currimar Addison Beach Resort", lat: 18.00, lng: 120.48, area: "Beachfront", budget: 1900, rating: 3.7, town: "currimao" },
+  { name: "D’Corals Beach Resort & Restaurant", lat: 17.99, lng: 120.47, area: "Beachfront", budget: 1800, rating: 3.6, town: "currimao" },
+  { name: "Rubio’s Farm & Resthouse", lat: 17.92, lng: 120.48, area: "Beachfront", budget: 1600, rating: 3.5, town: "badoc" },
+
+  // Bangui
+  { name: "Amerie Rae Resort", lat: 18.33, lng: 120.75, area: "Beachfront", budget: 1700, rating: 3.8, town: "bangui" },
+
+  // Batac
+  { name: "Sikatel Hotel", lat: 18.06, lng: 120.56, area: "City", budget: 1500, rating: 3.7, town: "batac" },
+  { name: "North Stellar Hotel & Events Place", lat: 18.07, lng: 120.55, area: "City", budget: 1600, rating: 3.8, town: "batac" },
+
+  // San Nicolas
+  { name: "Green Meadows Hotel & Restaurant", lat: 18.16, lng: 120.59, area: "City", budget: 1400, rating: 3.6, town: "san nicolas" },
+
+  // Burgos (lighthouse / coast)
+  { name: "Cape Bojeador Lodge", lat: 18.52, lng: 120.65, area: "Mountain", budget: 1300, rating: 3.5, town: "burgos" }
 ];
 
-// Center map to searched town
+function clearMarkers() {
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+}
+
 function centerMap() {
   let town = document.getElementById("townInput").value.toLowerCase().trim();
   town = town.replace(/\s+(city|town)$/i, "");
@@ -102,11 +108,6 @@ function centerMap() {
   } else {
     alert("Town not found.");
   }
-}
-
-function clearMarkers() {
-  markers.forEach(m => map.removeLayer(m));
-  markers = [];
 }
 
 function refreshRecommendations() {
@@ -130,8 +131,12 @@ function refreshRecommendations() {
   );
 
   if (filtered.length === 0) {
-    list.innerHTML = "<li>No accommodation found.</li>";
+    list.innerHTML = "<li>No accommodations found in this town.</li>";
     return;
+  }
+
+  if (towns[town]) {
+    map.setView(towns[town], 12);
   }
 
   filtered.forEach(a => {
