@@ -15,30 +15,33 @@ body {
     font-size: 32px;
 }
 
-/* ---------- Layout ---------- */
+/* ---------- Container Layout ---------- */
 .container {
     display: flex;
-    height: calc(100vh - 80px); /* full height minus title */
+    height: calc(100vh - 80px);
 }
 
 /* ---------- Left Panel ---------- */
 .left-panel {
     width: 360px;
+    min-width: 300px;
     background: white;
     padding: 20px;
     overflow-y: auto;
     box-shadow: 2px 0 10px #00000020;
-}
-
-/* ---------- Input Group ---------- */
-.input-group {
-    position: relative;
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    flex-direction: column;
+    gap: 12px;
 }
 
-input[type="text"] {
+/* ---------- Input Group (search bar + button) ---------- */
+.input-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.input-group input[type="text"] {
     flex: 1;
     padding: 10px;
     border-radius: 8px;
@@ -46,46 +49,29 @@ input[type="text"] {
     transition: border 0.3s;
 }
 
-input[type="text"]:focus {
+.input-group input[type="text"]:focus {
     outline: none;
     border-color: #1976d2;
     box-shadow: 0 0 5px #1976d2;
 }
 
-/* ---------- Autocomplete ---------- */
-.autocomplete-items {
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    border-top: none;
-    max-height: 150px;
-    overflow-y: auto;
-    width: 100%;
-    z-index: 10;
-}
-
-.autocomplete-item {
-    padding: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.autocomplete-item:hover {
-    background-color: #e0e0e0;
+.input-group button {
+    flex-shrink: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
 }
 
 /* ---------- Labels ---------- */
 label {
     display: block;
     font-size: 14px;
-    margin-top: 15px;
+    margin-top: 12px;
     margin-bottom: 5px;
 }
 
 /* ---------- Buttons ---------- */
 .btn {
     width: 100%;
-    margin-top: 14px;
     padding: 12px;
     background: #1976d2;
     color: white;
@@ -101,7 +87,6 @@ label {
 
 .btn-clear {
     width: 100%;
-    margin-top: 8px;
     padding: 10px;
     background: #e0e0e0;
     border: none;
@@ -138,73 +123,25 @@ input[type="range"] {
     cursor: pointer;
 }
 
-input[type="range"]:focus {
-    outline: none;
-}
-
-/* Styling the slider track and thumb for modern look */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #1976d2;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-    background: #0d5ca8;
-    transform: scale(1.2);
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-    height: 6px;
-    background: #ccc;
-    border-radius: 3px;
-}
-
-/* Firefox */
-input[type="range"]::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    background: #1976d2;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-
-input[type="range"]::-moz-range-thumb:hover {
-    background: #0d5ca8;
-    transform: scale(1.2);
-}
-
-input[type="range"]::-moz-range-track {
-    height: 6px;
-    background: #ccc;
-    border-radius: 3px;
-}
-
 /* ---------- Map ---------- */
 .map-container {
     flex: 1;
+    min-width: 0;
 }
 
 #map {
-    height: 100%;
     width: 100%;
+    height: 100%;
 }
 
 /* ---------- Recommendations List ---------- */
 #recommendations {
-    padding: 0;
     list-style: none;
+    padding: 0;
+    margin-top: 10px;
 }
 
 #recommendations li {
-    background: #fafafa;
     padding: 12px;
     margin-top: 8px;
     border-radius: 8px;
@@ -216,4 +153,25 @@ input[type="range"]::-moz-range-track {
 #recommendations li:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px #00000020;
+}
+
+/* ---------- Autocomplete ---------- */
+.autocomplete-items {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 10;
+}
+
+.autocomplete-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #e0e0e0;
 }
