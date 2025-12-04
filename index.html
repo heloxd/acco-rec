@@ -4,15 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ilocos Norte Accommodation Recommender</title>
+
+  <!-- Material-style UI -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- MarkerCluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css">
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 </head>
+
 <body>
   <header>
     <h1>Ilocos Norte Accommodation Recommender</h1>
+
     <div class="top-controls">
-      <input id="place-input" placeholder="Search places or addresses (Autocomplete)" />
-      <button id="locate-btn" title="Center on my location">📍 Me</button>
-      <button id="directions-clear">Clear Route</button>
+      <input id="place-input" placeholder="Search places..." autocomplete="off">
+      <div id="autocomplete-list" class="autocomplete"></div>
+
+      <button id="locate-btn" class="md-btn">📍 Me</button>
+      <button id="directions-clear" class="md-btn">Clear Route</button>
     </div>
   </header>
 
@@ -20,13 +35,12 @@
     <section class="left">
       <div class="card">
         <h2>Preferences</h2>
+
         <label>Budget: ₱<span id="budget-label">1500</span></label>
         <input id="budget" type="range" min="500" max="5000" step="100" value="1500">
 
-        <label>Preferred area</label>
-        <select id="area-select">
-          <option value="any">Any</option>
-        </select>
+        <label>Preferred Area</label>
+        <select id="area-select"></select>
 
         <label>Amenities</label>
         <div id="amenities" class="chip-row"></div>
@@ -35,8 +49,8 @@
         <input id="min-rating" type="range" min="1" max="5" step="0.1" value="3.5">
 
         <div class="buttons">
-          <button id="refresh-btn">Refresh Recommendations</button>
-          <button id="distance-matrix-btn">Distance Matrix (from me)</button>
+          <button id="refresh-btn" class="md-btn">Refresh</button>
+          <button id="distance-matrix-btn" class="md-btn">Distance Matrix</button>
         </div>
       </div>
 
@@ -57,11 +71,9 @@
   </main>
 
   <footer>
-    <small>Sample dataset. Replace with real data or a backend for production. API key is required.</small>
+    <small>OpenStreetMap + Photon Powered. No API key needed.</small>
   </footer>
 
-  <!-- Google Maps JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1qPMCRE0KVjbdPa38fn3po9n0i3Ll6B4&libraries=places"></script>
   <script src="script.js"></script>
 </body>
 </html>
