@@ -1,86 +1,77 @@
 // Initialize map
 var map = L.map('map').setView([17.57, 120.39], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: "© OpenStreetMap contributors"
+    attribution: "© OpenStreetMap contributors"
 }).addTo(map);
 
 var markers = [];
 
 // Towns in Ilocos Norte
 const towns = {
-  "adams": [18.45, 120.90],
-  "bacarra": [18.25, 120.61],
-  "badoc": [17.92, 120.48],
-  "bangui": [18.33, 120.75],
-  "batac": [18.06, 120.56],
-  "burgos": [18.51, 120.65],
-  "carasi": [18.18, 120.85],
-  "currimao": [17.98, 120.48],
-  "dingras": [18.10, 120.70],
-  "dumalneg": [18.46, 120.80],
-  "banna": [18.05, 120.68],
-  "laoag": [18.20, 120.59],
-  "marcos": [18.05, 120.70],
-  "pagudpud": [18.56, 120.76],
-  "paoay": [18.06, 120.53],
-  "pasuquin": [18.33, 120.62],
-  "piddig": [18.12, 120.70],
-  "pinili": [17.95, 120.48],
-  "san nicolas": [18.16, 120.59],
-  "sarrat": [18.15, 120.65],
-  "solsona": [18.12, 120.85],
-  "vintar": [18.22, 120.70]
+    "adams": [18.45, 120.90],
+    "bacarra": [18.25, 120.61],
+    "badoc": [17.92, 120.48],
+    "bangui": [18.33, 120.75],
+    "batac": [18.06, 120.56],
+    "burgos": [18.51, 120.65],
+    "carasi": [18.18, 120.85],
+    "currimao": [17.98, 120.48],
+    "dingras": [18.10, 120.70],
+    "dumalneg": [18.46, 120.80],
+    "banna": [18.05, 120.68],
+    "laoag": [18.20, 120.59],
+    "marcos": [18.05, 120.70],
+    "pagudpud": [18.56, 120.76],
+    "paoay": [18.06, 120.53],
+    "pasuquin": [18.33, 120.62],
+    "piddig": [18.12, 120.70],
+    "pinili": [17.95, 120.48],
+    "san nicolas": [18.16, 120.59],
+    "sarrat": [18.15, 120.65],
+    "solsona": [18.12, 120.85],
+    "vintar": [18.22, 120.70]
 };
 
 // Expanded accommodations dataset
 const accommodations = [
-  // Laoag
-  { name: "Java Hotel", lat: 18.20, lng: 120.59, area: "City", budget: 2400, rating: 4.2, town: "laoag" },
-  { name: "Viven Hotel", lat: 18.20, lng: 120.60, area: "City", budget: 2000, rating: 4.0, town: "laoag" },
-  { name: "Fort Ilocandia Resort", lat: 18.19, lng: 120.55, area: "Beachfront", budget: 3500, rating: 4.3, town: "laoag" },
-  { name: "The Bell Hotel", lat: 18.21, lng: 120.57, area: "City", budget: 1800, rating: 3.9, town: "laoag" },
-  { name: "Laoag Central Hotel", lat: 18.18, lng: 120.58, area: "City", budget: 2200, rating: 4.1, town: "laoag" },
+    // Laoag
+    { name: "Java Hotel", lat: 18.20, lng: 120.59, area: "City", budget: 2400, rating: 4.2, town: "laoag" },
+    { name: "Viven Hotel", lat: 18.20, lng: 120.60, area: "City", budget: 2000, rating: 4.0, town: "laoag" },
+    { name: "Fort Ilocandia Resort", lat: 18.19, lng: 120.55, area: "Beachfront", budget: 3500, rating: 4.3, town: "laoag" },
+    { name: "The Bell Hotel", lat: 18.21, lng: 120.57, area: "City", budget: 1800, rating: 3.9, town: "laoag" },
 
-  // Batac
-  { name: "Sikatel Hotel", lat: 18.06, lng: 120.56, area: "City", budget: 1500, rating: 3.7, town: "batac" },
-  { name: "Heritage Inn", lat: 18.05, lng: 120.55, area: "City", budget: 1700, rating: 4.0, town: "batac" },
-  { name: "Batac City Hotel", lat: 18.07, lng: 120.54, area: "City", budget: 1600, rating: 3.8, town: "batac" },
+    // Batac
+    { name: "Sikatel Hotel", lat: 18.06, lng: 120.56, area: "City", budget: 1500, rating: 3.7, town: "batac" },
+    { name: "Heritage Inn", lat: 18.05, lng: 120.55, area: "City", budget: 1700, rating: 4.0, town: "batac" },
 
-  // Paoay
-  { name: "Bellagio Hills Hotel", lat: 18.08, lng: 120.53, area: "City", budget: 2200, rating: 4.1, town: "paoay" },
-  { name: "Paoay Sands Resort", lat: 18.07, lng: 120.52, area: "Beachfront", budget: 2500, rating: 4.2, town: "paoay" },
-  { name: "Paoay Heritage Inn", lat: 18.09, lng: 120.51, area: "City", budget: 1800, rating: 3.9, town: "paoay" },
+    // Paoay
+    { name: "Bellagio Hills Hotel", lat: 18.08, lng: 120.53, area: "City", budget: 2200, rating: 4.1, town: "paoay" },
+    { name: "Paoay Sands Resort", lat: 18.07, lng: 120.52, area: "Beachfront", budget: 2500, rating: 4.2, town: "paoay" },
 
-  // Pagudpud
-  { name: "Hannah's Resort", lat: 18.60, lng: 120.80, area: "Beachfront", budget: 3200, rating: 4.4, town: "pagudpud" },
-  { name: "Blue Lagoon Inn", lat: 18.65, lng: 120.75, area: "Beachfront", budget: 2000, rating: 3.9, town: "pagudpud" },
-  { name: "Pagudpud Beach Resort", lat: 18.63, lng: 120.78, area: "Beachfront", budget: 2800, rating: 4.1, town: "pagudpud" },
-  { name: "Santo Niño Beach Inn", lat: 18.58, lng: 120.79, area: "Beachfront", budget: 2100, rating: 3.8, town: "pagudpud" },
+    // Pagudpud
+    { name: "Hannah's Resort", lat: 18.60, lng: 120.80, area: "Beachfront", budget: 3200, rating: 4.4, town: "pagudpud" },
+    { name: "Blue Lagoon Inn", lat: 18.65, lng: 120.75, area: "Beachfront", budget: 2000, rating: 3.9, town: "pagudpud" },
 
-  // Currimao
-  { name: "Currimar Addison Beach Resort", lat: 17.98, lng: 120.48, area: "Beachfront", budget: 1900, rating: 3.7, town: "currimao" },
+    // Currimao
+    { name: "Currimar Addison Beach Resort", lat: 17.98, lng: 120.48, area: "Beachfront", budget: 1900, rating: 3.7, town: "currimao" },
 
-  // Burgos
-  { name: "Cape Bojeador Lodge", lat: 18.52, lng: 120.65, area: "Mountain", budget: 1300, rating: 3.5, town: "burgos" },
-  { name: "Burgos Hills Inn", lat: 18.50, lng: 120.66, area: "Mountain", budget: 1500, rating: 3.7, town: "burgos" },
+    // Burgos
+    { name: "Cape Bojeador Lodge", lat: 18.52, lng: 120.65, area: "Mountain", budget: 1300, rating: 3.5, town: "burgos" },
 
-  // Marcos
-  { name: "Marcos Inn", lat: 18.05, lng: 120.70, area: "City", budget: 1500, rating: 3.8, town: "marcos" },
+    // Pinili
+    { name: "Pinili Hotel", lat: 17.95, lng: 120.48, area: "City", budget: 1400, rating: 3.6, town: "pinili" },
 
-  // Pinili
-  { name: "Pinili Hotel", lat: 17.95, lng: 120.48, area: "City", budget: 1400, rating: 3.6, town: "pinili" },
+    // Solsona
+    { name: "Solsona Mountain Lodge", lat: 18.12, lng: 120.85, area: "Mountain", budget: 1200, rating: 3.5, town: "solsona" },
 
-  // Solsona
-  { name: "Solsona Mountain Lodge", lat: 18.12, lng: 120.85, area: "Mountain", budget: 1200, rating: 3.5, town: "solsona" },
+    // San Nicolas
+    { name: "San Nicolas Inn", lat: 18.16, lng: 120.59, area: "City", budget: 1600, rating: 3.8, town: "san nicolas" },
 
-  // San Nicolas
-  { name: "San Nicolas Inn", lat: 18.16, lng: 120.59, area: "City", budget: 1600, rating: 3.8, town: "san nicolas" },
+    // Pasuquin
+    { name: "Pasuquin Bayview Inn", lat: 18.32, lng: 120.62, area: "Beachfront", budget: 1800, rating: 3.9, town: "pasuquin" },
 
-  // Pasuquin
-  { name: "Pasuquin Bayview Inn", lat: 18.32, lng: 120.62, area: "Beachfront", budget: 1800, rating: 3.9, town: "pasuquin" },
-
-  // Badoc
-  { name: "Badoc Seaside Resort", lat: 17.91, lng: 120.48, area: "Beachfront", budget: 1900, rating: 4.0, town: "badoc" }
+    // Badoc
+    { name: "Badoc Seaside Resort", lat: 17.91, lng: 120.48, area: "Beachfront", budget: 1900, rating: 4.0, town: "badoc" }
 ];
 
 // Clear all markers
@@ -91,7 +82,7 @@ function clearMarkers() {
 
 // Center map to town
 function centerMap() {
-    let townInput = document.getElementById("townInput").value.toLowerCase().trim();
+    const townInput = document.getElementById("townInput").value.toLowerCase().trim();
     if (towns[townInput]) {
         map.setView(towns[townInput], 12);
     } else {
@@ -108,11 +99,10 @@ function refreshRecommendations() {
     const rating = parseFloat(document.getElementById("rating").value);
 
     let townInput = document.getElementById("townInput").value.toLowerCase().trim();
+    const normalizedInput = townInput.replace(/\s+/g, '');
 
     const list = document.getElementById("recommendations");
-    const details = document.getElementById("recommendation-details");
     list.innerHTML = "";
-    details.innerHTML = "";
 
     if (!towns[townInput]) {
         list.innerHTML = "<li>Town not found.</li>";
@@ -122,7 +112,7 @@ function refreshRecommendations() {
     map.setView(towns[townInput], 12);
 
     const filtered = accommodations.filter(a =>
-        a.town.toLowerCase().trim() === townInput &&
+        a.town.replace(/\s+/g, '').toLowerCase() === normalizedInput &&
         a.budget <= budget &&
         a.rating >= rating &&
         (area === "Any" || a.area === area)
@@ -145,13 +135,6 @@ function refreshRecommendations() {
         markers.push(marker);
 
         li.onclick = () => {
-            document.getElementById("recommendation-details").innerHTML = `
-                <h3>${a.name}</h3>
-                <p><b>Budget:</b> ₱${a.budget}</p>
-                <p><b>Rating:</b> ⭐ ${a.rating}</p>
-                <p><b>Area:</b> ${a.area}</p>
-                <p><b>Town:</b> ${a.town}</p>
-            `;
             map.setView([a.lat, a.lng], 15);
             marker.openPopup();
         };
