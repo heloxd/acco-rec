@@ -69,9 +69,27 @@ label {
     margin-bottom: 5px;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Search Button (next to input) ---------- */
+.input-group .btn-search {
+    padding: 10px 16px;         
+    font-size: 16px;            
+    background-color: #1976d2;  
+    color: white;               
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;             
+    transition: background 0.3s;
+    height: 42px;               
+}
+
+.input-group .btn-search:hover {
+    background-color: #0d5ca8;
+}
+
+/* ---------- Panel Buttons (Refresh / Clear) ---------- */
 .btn {
-    width: 50%;
+    width: 100%;
     padding: 12px;
     background: #1976d2;
     color: white;
@@ -98,6 +116,7 @@ label {
 .btn-clear:hover {
     background: #c9c9c9;
 }
+
 
 /* ---------- Select Dropdown ---------- */
 select {
