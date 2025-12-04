@@ -32,7 +32,7 @@ body {
     box-shadow: 2px 0 10px #00000020;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 /* ---------- Custom Scrollbar ---------- */
@@ -53,12 +53,14 @@ body {
     display: flex;
     gap: 8px;
     width: 100%;
+    margin-bottom: 6px;
     position: relative;
 }
 
 .input-group input[type="text"] {
     flex: 1;
-    padding: 10px 12px;
+    padding: 10px;
+    height: 42px;
     border-radius: 8px;
     border: 1px solid #ccc;
     transition: border 0.3s, box-shadow 0.3s;
@@ -71,30 +73,30 @@ body {
 }
 
 /* ---------- Search Button ---------- */
-.input-group .btn-search {
-    flex-shrink: 0;
-    padding: 10px 14px;
-    font-size: 16px;
-    background-color: #1976d2;
+.btn-search {
+    height: 42px;
+    padding: 0 16px;
+    font-size: 15px;
+    background: #1976d2;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    height: 42px; /* match input height */
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px; /* space for icon */
+    gap: 6px;
     transition: background 0.3s, transform 0.2s;
 }
 
-.input-group .btn-search:hover {
-    background-color: #0d5ca8;
+.btn-search:hover {
+    background: #0d5ca8;
     transform: translateY(-1px);
 }
 
-/* Optional: magnifying glass icon inside search button */
-.input-group .btn-search::before {
+/* Optional magnifying glass icon */
+.btn-search::before {
     content: "🔍";
 }
 
@@ -177,7 +179,7 @@ input[type="range"] {
 #recommendations {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 #recommendations li {
@@ -197,13 +199,16 @@ input[type="range"] {
 /* ---------- Autocomplete ---------- */
 .autocomplete-items {
     position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
     background: white;
     border: 1px solid #ccc;
     border-top: none;
     max-height: 150px;
     overflow-y: auto;
-    width: 100%;
     z-index: 10;
+    border-radius: 0 0 8px 8px;
     opacity: 0;
     transform: translateY(-5px);
     transition: opacity 0.2s, transform 0.2s;
