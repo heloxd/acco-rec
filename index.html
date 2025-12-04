@@ -19,9 +19,10 @@
         <div class="left-panel">
 
             <div class="input-group">
-                <input type="text" id="townInput" placeholder="Enter town/city">
+                <input type="text" id="townInput" placeholder="Enter town/city" oninput="showSuggestions()" autocomplete="off">
                 <button class="btn" onclick="centerMap()">Search</button>
             </div>
+            <div id="autocomplete-list" class="autocomplete-items"></div>
 
             <label>Budget: ₱<span id="budgetVal">1500</span></label>
             <input type="range" id="budget" min="500" max="5000" value="1500"
