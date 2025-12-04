@@ -47,7 +47,10 @@ function clearMarkers() {
 }
 
 function centerMap() {
-    const town = document.getElementById("townInput").value.toLowerCase().trim();
+    let town = document.getElementById("townInput").value.toLowerCase().trim();
+    
+    // Normalize input by removing common suffixes like 'city', 'town', etc.
+    town = town.replace(/\s+(city|town)$/i, "");
 
     if (towns[town]) {
         map.setView(towns[town], 12);
