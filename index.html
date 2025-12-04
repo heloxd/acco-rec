@@ -12,18 +12,17 @@
     <h1 class="title">Ilocos Norte Accommodation Recommender</h1>
 
     <div class="container">
+
         <!-- LEFT PANEL -->
         <div class="left-panel">
+            
+            <!-- Search Bar -->
             <div class="input-group">
-    <input type="text" id="townInput" placeholder="Enter town/city">
-    <button class="btn-search" onclick="centerMap()">Search</button>
-</div>
+                <input type="text" id="townInput" placeholder="Enter town/city">
+                <button class="btn-search" onclick="centerMap()">Search</button>
+            </div>
 
-<!-- Panel buttons remain unchanged -->
-<button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
-<button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
-
-
+            <!-- Filters -->
             <label>Budget: ₱<span id="budgetVal">1500</span></label>
             <input type="range" id="budget" min="500" max="5000" value="1500"
                    oninput="document.getElementById('budgetVal').innerText=this.value">
@@ -40,9 +39,11 @@
             <input type="range" id="rating" min="0" max="5" value="3.5" step="0.5"
                    oninput="document.getElementById('ratingVal').innerText=this.value">
 
+            <!-- Action Buttons -->
             <button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
             <button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
 
+            <!-- Recommendations -->
             <h2>Top Recommendations</h2>
             <ul id="recommendations"></ul>
         </div>
@@ -51,6 +52,7 @@
         <div class="map-container">
             <div id="map"></div>
         </div>
+
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
