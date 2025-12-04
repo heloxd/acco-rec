@@ -108,8 +108,22 @@ function clearMarkers() {
 function centerMap() {
     const townInput = document.getElementById("townInput");
     const town = townInput.value.toLowerCase().trim();
+
     if (towns[town]) {
+        // Recenter map
         map.setView(towns[town], 12);
+
+        // Optional: highlight town center briefly
+        const townMarker = L.circleMarker(towns[town], {
+            radius: 8,
+            color: "#ff0000",
+            fillColor: "#f03",
+            fillOpacity: 0.5
+        }).addTo(map);
+
+        setTimeout(() => map.removeLayer(townMarker), 2000);
+
+        // Show filtered accommodations
         refreshRecommendations();
     } else {
         alert("Town not found.");
@@ -120,8 +134,7 @@ function centerMap() {
 function refreshRecommendations() {
     clearMarkers();
 
-    const townInput = document.getElementById("townInput");
-    const town = townInput.value.toLowerCase().trim();
+    const town = document.getElementById("townInput").value.toLowerCase().trim();
     const budget = parseInt(document.getElementById("budget").value);
     const area = document.getElementById("area").value;
     const rating = parseFloat(document.getElementById("rating").value);
@@ -181,12 +194,47 @@ function autocomplete(input, arr) {
                 itemDiv.addEventListener("click", function () {
                     input.value = this.getElementsByTagName("input")[0].value;
                     closeAllLists();
+                    centerMap(); // <-- recenter map immediately
                 });
 
                 list.appendChild(itemDiv);
             }
         });
     });
+
+    input.addEventListener("keydown", function (e) {
+        let list = document.getElementById(this.id + "-autocomplete-list");
+        if (list) list = list.getElementsByTagName("div");
+
+        if (e.keyCode === 40) { // down
+            currentFocus++;
+            addActive(list);
+        } else if (e.keyCode === 38) { // up
+            currentFocus--;
+            addActive(list);
+        } else if (e.keyCode === 13) { // enter
+            e.preventDefault();
+            if (currentFocus > -1) {
+                if (list) list[currentFocus].click();
+            } else {
+                centerMap(); // <-- press Enter to recenter
+            }
+        }
+    });
+
+    function addActive(list) {
+        if (!list) return false;
+        removeActive(list);
+        if (currentFocus >= list.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = list.length - 1;
+        list[currentFocus].classList.add("autocomplete-active");
+    }
+
+    function removeActive(list) {
+        for (let i = 0; i < list.length; i++) {
+            list[i].classList.remove("autocomplete-active");
+        }
+    }
 
     function closeAllLists(elmnt) {
         const items = document.getElementsByClassName("autocomplete-items");
