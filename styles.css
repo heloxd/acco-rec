@@ -46,3 +46,24 @@ button {
     margin-top: 10px;
     border-left: 4px solid #0078ff;
 }
+#map {
+  height: 420px;
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.results-panel {
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.reco-card {
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
