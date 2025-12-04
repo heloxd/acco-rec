@@ -4,6 +4,7 @@ body {
     background: #f4f4f4;
 }
 
+/* Page title */
 .title {
     text-align: center;
     padding: 20px 0;
@@ -13,11 +14,13 @@ body {
     font-size: 32px;
 }
 
+/* Main layout */
 .container {
     display: flex;
     height: calc(100vh - 80px);
 }
 
+/* Left sidebar */
 .left-panel {
     width: 360px;
     background: white;
@@ -27,34 +30,16 @@ body {
 }
 
 .input-group {
-    position: relative;
     display: flex;
-    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 input[type="text"] {
+    flex: 1;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
-}
-
-#suggestions {
-    position: absolute;
-    top: 45px;
-    width: 93%;
-    background: white;
-    border: 1px solid #ccc;
-    display: none;
-    z-index: 20;
-}
-
-#suggestions div {
-    padding: 8px;
-    cursor: pointer;
-}
-
-#suggestions div:hover {
-    background: #eee;
 }
 
 label {
@@ -64,6 +49,7 @@ label {
     margin-bottom: 5px;
 }
 
+/* Buttons */
 .btn {
     width: 100%;
     margin-top: 14px;
@@ -93,6 +79,7 @@ label {
     background: #c9c9c9;
 }
 
+/* Map */
 .map-container {
     flex: 1;
 }
@@ -102,6 +89,7 @@ label {
     width: 100%;
 }
 
+/* Recommendations list */
 #recommendations {
     padding: 0;
     list-style: none;
@@ -114,4 +102,18 @@ label {
     border-radius: 8px;
     box-shadow: 0 2px 5px #00000015;
     cursor: pointer;
+}
+
+#recommendations li:hover {
+    background: #e8f0fe;
+}
+
+/* Details box below recommendations */
+.details-box {
+    margin-top: 10px;
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px #00000015;
+    min-height: 80px;
 }
