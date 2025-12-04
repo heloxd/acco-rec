@@ -4,25 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ilocos Norte Accommodation Recommender</title>
-
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
-
 <body>
-
     <h1 class="title">Ilocos Norte Accommodation Recommender</h1>
 
     <div class="container">
-
         <!-- LEFT PANEL -->
         <div class="left-panel">
-
             <div class="input-group">
-                <input type="text" id="townInput" placeholder="Enter town/city" oninput="showSuggestions()" autocomplete="off">
-                <button class="btn" onclick="centerMap(); refreshRecommendations();">Search</button>
+                <input type="text" id="townInput" placeholder="Enter town/city" oninput="showSuggestions()">
+                <div id="autocomplete-list" class="autocomplete-items"></div>
+                <button class="btn" onclick="refreshRecommendations()">Search</button>
             </div>
-            <div id="autocomplete-list" class="autocomplete-items"></div>
 
             <label>Budget: ₱<span id="budgetVal">1500</span></label>
             <input type="range" id="budget" min="500" max="5000" value="1500"
@@ -45,19 +40,15 @@
 
             <h2>Top Recommendations</h2>
             <ul id="recommendations"></ul>
-            <div id="recommendation-details" class="details-box"></div>
-
         </div>
 
         <!-- RIGHT SIDE MAP -->
         <div class="map-container">
             <div id="map"></div>
         </div>
-
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
