@@ -1,61 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ilocos Norte Accommodation Recommender</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ilocos Norte Accommodation Recommender</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Accommodation Recommender – Ilocos Norte</h1>
-
-    <form id="prefForm">
-        <label>Budget</label>
-        <select id="budget">
-            <option value="">Select</option>
-            <option value="low">Low</option>
-            <option value="mid">Mid</option>
-            <option value="high">High</option>
-        </select>
-
-        <label>Municipality</label>
-        <select id="location"></select>
-
-        <label>Amenities</label>
-        <div class="amenities">
-            <label><input type="checkbox" value="wifi"> WiFi</label>
-            <label><input type="checkbox" value="beachfront"> Beachfront</label>
-            <label><input type="checkbox" value="parking"> Parking</label>
-            <label><input type="checkbox" value="pool"> Pool</label>
-        </div>
-
-        <label>Travel Type</label>
-        <select id="tripType">
-            <option value="">Select</option>
-            <option value="leisure">Leisure</option>
-            <option value="adventure">Adventure</option>
-            <option value="culture">Culture</option>
-        </select>
-
-        <button type="submit">Recommend</button>
-    </form>
-
-    <h2>Results</h2>
-    <div id="results"></div>
-
-    <h2>Map</h2>
-    <div id="map"></div>
+<div class="hero">
+  <h1>Ilocos Norte Accommodation Recommender</h1>
+  <p>Rule-Based Expert System + Leaflet Map + Ilocos 3D Theme</p>
 </div>
 
+<div class="container">
+
+  <aside class="card-3d glass">
+    <h2>Filters</h2>
+
+    <form id="prefForm">
+      <label>Budget</label>
+      <select id="budget">
+        <option value="">Any</option>
+        <option value="low">Low</option>
+        <option value="mid">Mid</option>
+        <option value="high">High</option>
+      </select>
+
+      <label>Municipality</label>
+      <select id="location"></select>
+
+      <label>Amenities</label>
+      <div class="amenities">
+        <label><input type="checkbox" value="wifi"> WiFi</label>
+        <label><input type="checkbox" value="beachfront"> Beachfront</label>
+        <label><input type="checkbox" value="parking"> Parking</label>
+        <label><input type="checkbox" value="pool"> Pool</label>
+      </div>
+
+      <label>Travel Type</label>
+      <select id="tripType">
+        <option value="">Any</option>
+        <option value="leisure">Leisure</option>
+        <option value="adventure">Adventure</option>
+        <option value="culture">Culture</option>
+      </select>
+
+      <button type="submit" class="btn-3d">Recommend</button>
+    </form>
+
+    <hr>
+
+    <label>Map Theme</label>
+    <select id="mapTheme">
+      <option value="osm">Default (OSM)</option>
+      <option value="dark">Dark Mode</option>
+      <option value="terrain">Terrain</option>
+    </select>
+  </aside>
+
+  <section class="results-panel">
+    <h2>Results</h2>
+    <div id="results"></div>
+  </section>
+
+</div>
+
+<h2 class="title-3d">Map</h2>
+<div id="map"></div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 <script src="app.js"></script>
-
-<!-- GOOGLE MAPS API KEY REQUIRED -->
-<script async 
-   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-
-</script>
 
 </body>
 </html>
