@@ -32,32 +32,14 @@ const towns = {
   "vintar": [18.22, 120.70]
 };
 
-// Expanded sample dataset
+// Sample accommodations dataset
 const accommodations = [
   { name: "Java Hotel", lat: 18.20, lng: 120.59, area: "City", budget: 2400, rating: 4.2, town: "laoag" },
   { name: "Viven Hotel", lat: 18.20, lng: 120.60, area: "City", budget: 2000, rating: 4.0, town: "laoag" },
-  { name: "Isabel Suites", lat: 18.20, lng: 120.58, area: "City", budget: 1500, rating: 3.9, town: "laoag" },
-  { name: "Northview Hotel", lat: 18.21, lng: 120.60, area: "City", budget: 1800, rating: 3.8, town: "laoag" },
-  { name: "Balay de Blas Pension House", lat: 18.20, lng: 120.59, area: "City", budget: 1200, rating: 3.5, town: "laoag" },
-
-  { name: "Bellagio Hills Hotel & Restaurant", lat: 18.08, lng: 120.53, area: "City", budget: 2200, rating: 4.1, town: "paoay" },
-  { name: "Veranda Suites & Restaurant", lat: 18.07, lng: 120.53, area: "City", budget: 1700, rating: 3.9, town: "paoay" },
-
-  { name: "Alta Vista Ilocandia", lat: 18.59, lng: 120.79, area: "Beachfront", budget: 2200, rating: 4.0, town: "pagudpud" },
-  { name: "Blue Lagoon Inn & Restaurant", lat: 18.65, lng: 120.75, area: "Beachfront", budget: 2000, rating: 3.9, town: "pagudpud" },
-  { name: "Nest Resort Pagudpud", lat: 18.55, lng: 120.76, area: "Beachfront", budget: 2100, rating: 3.8, town: "pagudpud" },
-
+  { name: "Bellagio Hills Hotel", lat: 18.08, lng: 120.53, area: "City", budget: 2200, rating: 4.1, town: "paoay" },
+  { name: "Blue Lagoon Inn", lat: 18.65, lng: 120.75, area: "Beachfront", budget: 2000, rating: 3.9, town: "pagudpud" },
   { name: "Currimar Addison Beach Resort", lat: 18.00, lng: 120.48, area: "Beachfront", budget: 1900, rating: 3.7, town: "currimao" },
-  { name: "D’Corals Beach Resort & Restaurant", lat: 17.99, lng: 120.47, area: "Beachfront", budget: 1800, rating: 3.6, town: "currimao" },
-  { name: "Rubio’s Farm & Resthouse", lat: 17.92, lng: 120.48, area: "Beachfront", budget: 1600, rating: 3.5, town: "badoc" },
-
-  { name: "Amerie Rae Resort", lat: 18.33, lng: 120.75, area: "Beachfront", budget: 1700, rating: 3.8, town: "bangui" },
-
   { name: "Sikatel Hotel", lat: 18.06, lng: 120.56, area: "City", budget: 1500, rating: 3.7, town: "batac" },
-  { name: "North Stellar Hotel & Events Place", lat: 18.07, lng: 120.55, area: "City", budget: 1600, rating: 3.8, town: "batac" },
-
-  { name: "Green Meadows Hotel & Restaurant", lat: 18.16, lng: 120.59, area: "City", budget: 1400, rating: 3.6, town: "san nicolas" },
-
   { name: "Cape Bojeador Lodge", lat: 18.52, lng: 120.65, area: "Mountain", budget: 1300, rating: 3.5, town: "burgos" }
 ];
 
@@ -67,10 +49,11 @@ function clearMarkers() {
 }
 
 function centerMap() {
-    let town = document.getElementById("townInput").value.toLowerCase().trim();
-    town = town.replace(/\s+(city|town)$/i, "");
-    if (towns[town]) {
-        map.setView(towns[town], 12);
+    let townInput = document.getElementById("townInput").value.toLowerCase().trim();
+    townInput = townInput.replace(/\s+(city|town)$/i, "");
+
+    if (towns[townInput]) {
+        map.setView(towns[townInput], 12);
     } else {
         alert("Town not found.");
     }
@@ -83,16 +66,23 @@ function refreshRecommendations() {
     const area = document.getElementById("area").value;
     const rating = parseFloat(document.getElementById("rating").value);
 
-    let town = document.getElementById("townInput").value.toLowerCase().trim();
-    town = town.replace(/\s+(city|town)$/i, "");
+    let townInput = document.getElementById("townInput").value.toLowerCase().trim();
+    townInput = townInput.replace(/\s+(city|town)$/i, "");
 
     const list = document.getElementById("recommendations");
     const details = document.getElementById("recommendation-details");
     list.innerHTML = "";
     details.innerHTML = "";
 
+    if (!towns[townInput]) {
+        list.innerHTML = "<li>Town not found.</li>";
+        return;
+    }
+
+    map.setView(towns[townInput], 12);
+
     const filtered = accommodations.filter(a =>
-        a.town === town &&
+        a.town.toLowerCase() === townInput &&
         a.budget <= budget &&
         a.rating >= rating &&
         (area === "Any" || a.area === area)
@@ -101,10 +91,6 @@ function refreshRecommendations() {
     if (filtered.length === 0) {
         list.innerHTML = "<li>No accommodations found in this town.</li>";
         return;
-    }
-
-    if (towns[town]) {
-        map.setView(towns[town], 12);
     }
 
     filtered.forEach(a => {
@@ -118,7 +104,6 @@ function refreshRecommendations() {
 
         markers.push(marker);
 
-        // Click list item to show details below list & open marker popup
         li.onclick = () => {
             details.innerHTML = `
                 <h3>${a.name}</h3>
@@ -132,3 +117,35 @@ function refreshRecommendations() {
         };
     });
 }
+
+// Autocomplete for town input
+function showSuggestions() {
+    const input = document.getElementById("townInput");
+    const listContainer = document.getElementById("autocomplete-list");
+    const val = input.value.toLowerCase().trim();
+
+    listContainer.innerHTML = "";
+    if (!val) return;
+
+    const matches = Object.keys(towns).filter(town => town.startsWith(val));
+
+    matches.forEach(match => {
+        const item = document.createElement("div");
+        item.classList.add("autocomplete-item");
+        item.innerHTML = match.charAt(0).toUpperCase() + match.slice(1);
+        item.addEventListener("click", () => {
+            input.value = match;
+            listContainer.innerHTML = "";
+            centerMap();
+            refreshRecommendations();
+        });
+        listContainer.appendChild(item);
+    });
+}
+
+// Close suggestions when clicking outside
+document.addEventListener("click", function(e) {
+    if (!document.getElementById("townInput").contains(e.target)) {
+        document.getElementById("autocomplete-list").innerHTML = "";
+    }
+});
