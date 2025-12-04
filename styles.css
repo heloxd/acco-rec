@@ -1,250 +1,178 @@
-/* =========================
-   ROOT VARIABLES
-========================= */
-:root {
-    --bg: #f6f8fa;
-    --card: #ffffff;
-    --muted: #6b7280;
-}
-
-/* =========================
-   GLOBAL STYLES
-========================= */
-* {
-    box-sizing: border-box;
-}
-
+/* ------------------------------
+   GLOBAL LAYOUT
+--------------------------------*/
 body {
-    font-family: Inter, system-ui, Arial, sans-serif;
-    margin: 0;
-    background: var(--bg);
-    color: #111;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background: #f4f4f4;
+  color: #333;
 }
 
-/* =========================
-   HEADER
-========================= */
 header {
-    padding: 12px 20px;
-    background: #0f172a;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  background: #ffffff;
+  padding: 16px;
+  box-shadow: 0 2px 8px #00000020;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
-header h1 {
-    font-size: 18px;
-    margin: 0;
+h1 {
+  margin: 0 0 10px 0;
+  font-weight: 600;
 }
 
+/* ------------------------------
+   TOP CONTROLS
+--------------------------------*/
 .top-controls {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: relative;
 }
 
 #place-input {
-    padding: 8px 10px;
-    width: 360px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-#locate-btn,
-#directions-clear {
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+/* Autocomplete dropdown */
+.autocomplete {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: calc(100% - 200px);
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 10px #00000020;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
 }
 
-/* =========================
+.autocomplete div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete div:hover {
+  background: #f0f0f0;
+}
+
+/* ------------------------------
+   MATERIAL BUTTONS
+--------------------------------*/
+.md-btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 4px #00000030;
+  transition: 0.2s;
+}
+
+.md-btn:hover {
+  background: #0d5ca8;
+}
+
+/* ------------------------------
    MAIN LAYOUT
-========================= */
+--------------------------------*/
 main {
-    display: flex;
-    gap: 16px;
-    padding: 16px;
-    max-width: 1200px;
-    margin: 18px auto;
+  display: flex;
+  height: calc(100vh - 120px);
 }
 
 .left {
-    width: 360px;
+  width: 360px;
+  overflow-y: auto;
+  padding: 16px;
 }
 
 .right {
-    flex: 1;
+  flex: 1;
+  position: relative;
 }
 
-/* Full-page container alternative layout */
-.container {
-    display: flex;
-    height: 100vh;
+.map {
+  height: 100%;
+  width: 100%;
 }
 
-#map {
-    width: 60%;
-    height: 100%;
-}
-
-.sidebar {
-    width: 40%;
-    padding: 20px;
-    overflow-y: auto;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* =========================
+/* ------------------------------
    CARDS
-========================= */
+--------------------------------*/
 .card {
-    background: var(--card);
-    padding: 12px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    margin-bottom: 12px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px #00000015;
 }
 
-/* =========================
-   HEADINGS
-========================= */
-h1, h2 {
-    margin-top: 0;
+.card h2, .card h3 {
+  margin-top: 0;
 }
 
-/* =========================
-   FORM ELEMENTS
-========================= */
-label {
-    display: block;
-    margin-top: 8px;
-    font-size: 13px;
-    color: var(--muted);
-}
-
-input[type="range"] {
-    width: 100%;
-}
-
-.preference-group {
-    margin-bottom: 15px;
-}
-
-/* =========================
+/* ------------------------------
    CHIPS
-========================= */
+--------------------------------*/
 .chip-row {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .chip {
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid #e5e7eb;
-    background: #fff;
-    cursor: pointer;
-    font-size: 13px;
+  padding: 6px 10px;
+  background: #e0e0e0;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .chip.active {
-    background: #0ea5e9;
-    color: white;
-    border-color: #0ea5e9;
+  background: #1976d2;
+  color: white;
 }
 
-/* =========================
-   RESULTS LIST
-========================= */
-.results-list {
-    max-height: 420px;
-    overflow: auto;
+/* ------------------------------
+   RECOMMENDATION LIST
+--------------------------------*/
+.results-list .result {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
 
-.result-item {
-    padding: 8px;
-    border-bottom: 1px solid #f1f5f9;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.results-list .result:hover {
+  background: #f7f7f7;
 }
 
-.result-item .meta {
-    font-size: 13px;
-    color: var(--muted);
-}
-
-.result-item button {
-    margin-left: 6px;
-}
-
-/* =========================
-   MAP
-========================= */
-.map {
-    width: 100%;
-    height: 520px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-.buttons {
-    margin-top: 10px;
-    display: flex;
-    gap: 8px;
-}
-
-button {
-    background: #111827;
-    color: white;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-}
-
-/* =========================
+/* ------------------------------
    ROUTE PANEL
-========================= */
+--------------------------------*/
 .route-panel {
-    margin-top: 12px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 260px;
+  max-height: 300px;
+  overflow: auto;
 }
 
-#route-info {
-    font-size: 14px;
-    color: var(--muted);
-}
-
-/* =========================
+/* ------------------------------
    FOOTER
-========================= */
+--------------------------------*/
 footer {
-    max-width: 1200px;
-    margin: 8px auto;
-    padding: 8px 16px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 960px) {
-    main {
-        flex-direction: column;
-    }
-    .left {
-        width: 100%;
-    }
-    .map {
-        height: 360px;
-    }
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
 }
