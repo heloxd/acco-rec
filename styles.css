@@ -1,11 +1,19 @@
-/* ---------- Global Styles ---------- */
+/* ================================================
+   GLOBAL PAGE STYLES
+   - Sets default font, background, resets margin
+================================================ */
 body {
     margin: 0;
     font-family: Inter, Arial, sans-serif;
     background: #f4f4f4;
 }
 
-/* ---------- Title ---------- */
+/* ================================================
+   PAGE TITLE SECTION
+   - Centers title
+   - Adds padding + shadow
+   - Clean professional header
+================================================ */
 .title {
     text-align: center;
     padding: 20px 0;
@@ -15,14 +23,23 @@ body {
     font-size: 32px;
 }
 
-/* ---------- Container Layout ---------- */
+/* ================================================
+   MAIN LAYOUT CONTAINER
+   - Flexbox splits left panel + map
+   - Height fills viewport except header
+================================================ */
 .container {
     display: flex;
     height: calc(100vh - 80px);
     flex-wrap: wrap;
 }
 
-/* ---------- Left Panel ---------- */
+/* ================================================
+   LEFT PANEL (FILTERS + BUTTONS + RECOMMENDATIONS)
+   - Fixed width
+   - Scrollable
+   - Vertical layout
+================================================ */
 .left-panel {
     width: 360px;
     min-width: 300px;
@@ -35,7 +52,9 @@ body {
     gap: 10px;
 }
 
-/* ---------- Custom Scrollbar ---------- */
+/* ================================================
+   CUSTOM SCROLLBAR (Chrome, Edge)
+================================================ */
 .left-panel::-webkit-scrollbar {
     width: 8px;
 }
@@ -48,15 +67,20 @@ body {
     border-radius: 4px;
 }
 
-/* ---------- Input Group (search bar + button) ---------- */
+/* ================================================
+   SEARCH BAR + SEARCH BUTTON ROW
+   - Horizontal layout
+   - Search suggestions appear under this
+================================================ */
 .input-group {
     display: flex;
     gap: 8px;
     width: 100%;
     margin-bottom: 6px;
-    position: relative;
+    position: relative; /* Needed for autocomplete dropdown */
 }
 
+/* Input field styling */
 .input-group input[type="text"] {
     flex: 1;
     padding: 10px;
@@ -66,13 +90,19 @@ body {
     transition: border 0.3s, box-shadow 0.3s;
 }
 
+/* Input focus glow */
 .input-group input[type="text"]:focus {
     outline: none;
     border-color: #1976d2;
     box-shadow: 0 0 5px #1976d2;
 }
 
-/* ---------- Search Button ---------- */
+/* ================================================
+   SEARCH BUTTON (blue)
+   - Same height as input
+   - Has an optional icon
+   - Hover lift effect
+================================================ */
 .btn-search {
     height: 42px;
     padding: 0 16px;
@@ -90,17 +120,25 @@ body {
     transition: background 0.3s, transform 0.2s;
 }
 
+/* Hover effect */
 .btn-search:hover {
     background: #0d5ca8;
     transform: translateY(-1px);
 }
 
-/* Optional magnifying glass icon */
+/* Adds a magnifying glass icon before text */
 .btn-search::before {
     content: "🔍";
 }
 
-/* ---------- Panel Buttons ---------- */
+/* ================================================
+   PANEL BUTTONS
+   - Refresh Recommendations button
+   - Clear Markers button
+   - Fully styled
+================================================ */
+
+/* Main blue button */
 .btn {
     width: 100%;
     padding: 12px;
@@ -117,6 +155,7 @@ body {
     transform: translateY(-1px);
 }
 
+/* Grey button */
 .btn-clear {
     width: 100%;
     padding: 10px;
@@ -132,7 +171,9 @@ body {
     transform: translateY(-1px);
 }
 
-/* ---------- Labels ---------- */
+/* ================================================
+   LABELS ABOVE FILTER INPUTS
+================================================ */
 label {
     display: block;
     font-size: 14px;
@@ -140,7 +181,9 @@ label {
     margin-bottom: 5px;
 }
 
-/* ---------- Select Dropdown ---------- */
+/* ================================================
+   SELECT DROPDOWNS
+================================================ */
 select {
     width: 100%;
     padding: 10px;
@@ -157,17 +200,22 @@ select:focus {
     box-shadow: 0 0 5px #1976d2;
 }
 
-/* ---------- Range Slider ---------- */
+/* ================================================
+   RANGE SLIDERS
+================================================ */
 input[type="range"] {
     width: 100%;
     margin-top: 5px;
     cursor: pointer;
 }
 
-/* ---------- Map ---------- */
+/* ================================================
+   MAP CONTAINER
+   - Takes all remaining space after left panel
+================================================ */
 .map-container {
     flex: 1;
-    min-width: 0;
+    min-width: 0; 
 }
 
 #map {
@@ -175,7 +223,10 @@ input[type="range"] {
     height: 100%;
 }
 
-/* ---------- Recommendations List ---------- */
+/* ================================================
+   RECOMMENDATION LIST
+   - Displays dynamically generated results
+================================================ */
 #recommendations {
     list-style: none;
     padding: 0;
@@ -196,7 +247,11 @@ input[type="range"] {
     box-shadow: 0 4px 10px #00000020;
 }
 
-/* ---------- Autocomplete ---------- */
+/* ================================================
+   AUTOCOMPLETE DROPDOWN
+   - Smooth fade-in animation
+   - Appears below search bar
+================================================ */
 .autocomplete-items {
     position: absolute;
     top: calc(100% + 2px);
@@ -209,6 +264,8 @@ input[type="range"] {
     overflow-y: auto;
     z-index: 10;
     border-radius: 0 0 8px 8px;
+
+    /* Animation */
     opacity: 0;
     transform: translateY(-5px);
     transition: opacity 0.2s, transform 0.2s;
@@ -219,6 +276,7 @@ input[type="range"] {
     transform: translateY(0);
 }
 
+/* Individual autocomplete item */
 .autocomplete-item {
     padding: 8px;
     cursor: pointer;
@@ -229,7 +287,9 @@ input[type="range"] {
     background-color: #e0e0e0;
 }
 
-/* ---------- Responsive ---------- */
+/* ================================================
+   RESPONSIVE LAYOUT FOR MOBILE
+================================================ */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
