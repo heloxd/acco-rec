@@ -1,6 +1,5 @@
 // ============================================================
 //  ILOCOS NORTE ACCOMMODATION RECOMMENDER — JAVASCRIPT FILE
-//  With Full Comments for Learning & Debugging
 // ============================================================
 
 
