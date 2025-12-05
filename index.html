@@ -2,31 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Ensures proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ilocos Norte Accommodation Recommender</title>
+
+    <!-- Your custom CSS file -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Leaflet map library CSS (required for map styling) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
 
+    <!-- Page Title / Header -->
     <h1 class="title">Ilocos Norte Accommodation Recommender</h1>
 
+    <!-- Main layout container (left panel + map) -->
     <div class="container">
 
-        <!-- LEFT PANEL -->
+        <!-- ========== LEFT PANEL ========== -->
         <div class="left-panel">
             
-            <!-- Search Bar -->
+            <!-- Search Input + Button -->
             <div class="input-group">
+                <!-- User enters town/city to center the map -->
                 <input type="text" id="townInput" placeholder="Enter town/city">
+                
+                <!-- Search button triggers map centering -->
                 <button class="btn-search" onclick="centerMap()">Search</button>
             </div>
 
-            <!-- Filters -->
-            <label>Budget: ₱<span id="budgetVal">1500</span></label>
-            <input type="range" id="budget" min="500" max="5000" value="1500"
+            <!-- ===== Filters Section ===== -->
+            <!-- Budget Filter -->
+            <label>
+                Budget: ₱<span id="budgetVal">1500</span>
+            </label>
+
+            <!-- Budget input slider -->
+            <input type="range" id="budget"
+                   min="500" max="5000" value="1500"
                    oninput="document.getElementById('budgetVal').innerText=this.value">
 
+            <!-- Preferred Area Filter -->
             <label>Preferred area:</label>
             <select id="area">
                 <option value="Any">Any</option>
@@ -35,27 +53,45 @@
                 <option value="Mountain">Mountain</option>
             </select>
 
-            <label>Minimum rating: <span id="ratingVal">3.5</span></label>
-            <input type="range" id="rating" min="0" max="5" value="3.5" step="0.5"
+            <!-- Rating Filter -->
+            <label>
+                Minimum rating: <span id="ratingVal">3.5</span>
+            </label>
+
+            <!-- Rating input slider -->
+            <input type="range" id="rating"
+                   min="0" max="5" value="3.5" step="0.5"
                    oninput="document.getElementById('ratingVal').innerText=this.value">
 
-            <!-- Panel Buttons -->
+            <!-- ===== Action Buttons ===== -->
+
+            <!-- Refreshes recommendation list based on selected filters -->
             <button class="btn" onclick="refreshRecommendations()">Refresh Recommendations</button>
+
+            <!-- Clears all map markers -->
             <button class="btn-clear" onclick="clearMarkers()">Clear Markers</button>
 
-            <!-- Recommendations -->
+            <!-- ===== Recommendations List Display ===== -->
+
+            <!-- Section title -->
             <h2>Top Recommendations</h2>
+
+            <!-- Dynamic list where JS inserts results -->
             <ul id="recommendations"></ul>
         </div>
 
-        <!-- RIGHT SIDE MAP -->
+        <!-- ========== RIGHT PANEL (MAP) ========== -->
         <div class="map-container">
+            <!-- Leaflet map element -->
             <div id="map"></div>
         </div>
 
     </div>
 
+    <!-- Leaflet JS library (required for map functionality) -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Your custom JavaScript file controlling map + filters -->
     <script src="script.js"></script>
 </body>
 </html>
